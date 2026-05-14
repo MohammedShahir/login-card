@@ -18,6 +18,7 @@
             </div>
             <nav class="flex-1 p-4 space-y-2">
                 <a href="{{ route('admin.dashboard') }}" class="block px-4 py-3 rounded-xl {{ request()->routeIs('admin.dashboard') ? 'bg-white/5 border border-white/10 text-white font-medium' : 'hover:bg-white/5 transition text-white/70' }}">نظرة عامة</a>
+                <a href="{{ route('admin.users.index') }}" class="block px-4 py-3 rounded-xl {{ request()->routeIs('admin.users.*') ? 'bg-white/5 border border-white/10 text-white font-medium' : 'hover:bg-white/5 transition text-white/70' }}">إدارة المشرفين</a>
                 <a href="{{ route('admin.resellers.index') }}" class="block px-4 py-3 rounded-xl {{ request()->routeIs('admin.resellers.*') ? 'bg-white/5 border border-white/10 text-white font-medium' : 'hover:bg-white/5 transition text-white/70' }}">نقاط البيع</a>
                 <a href="{{ route('admin.plans.index') }}" class="block px-4 py-3 rounded-xl {{ request()->routeIs('admin.plans.*') ? 'bg-white/5 border border-white/10 text-white font-medium' : 'hover:bg-white/5 transition text-white/70' }}">الباقات</a>
                 <a href="{{ route('admin.mikrotik.edit') }}" class="block px-4 py-3 rounded-xl {{ request()->routeIs('admin.mikrotik.*') ? 'bg-white/5 border border-white/10 text-white font-medium' : 'hover:bg-white/5 transition text-white/70' }}">إعدادات MikroTik</a>

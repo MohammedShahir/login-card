@@ -19,6 +19,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [\App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('resellers', \App\Http\Controllers\Admin\ResellerController::class);
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::resource('plans', \App\Http\Controllers\Admin\PlanController::class);
     Route::get('mikrotik', [\App\Http\Controllers\Admin\MikrotikConfigController::class, 'edit'])->name('mikrotik.edit');
     Route::post('mikrotik', [\App\Http\Controllers\Admin\MikrotikConfigController::class, 'update'])->name('mikrotik.update');
