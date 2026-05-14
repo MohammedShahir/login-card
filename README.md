@@ -37,7 +37,7 @@ A high-performance, ultra-modern External Captive Portal designed specifically f
 
 | Layer | Technology |
 | :--- | :--- |
-| **Backend** | Laravel 11 (PHP 8.3+) |
+| **Backend** | Laravel 13 (PHP 8.3+) |
 | **Database** | MySQL 8.0 |
 | **Frontend** | Tailwind CSS 4.0 & Alpine.js |
 | **PWA** | Service Workers & Web App Manifest |
