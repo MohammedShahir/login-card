@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class InternetPlan extends Model
+{
+    protected $fillable = [
+        'title',
+        'price',
+        'data_limit',
+        'time_limit',
+        'speed_limit',
+        'description',
+    ];
+}

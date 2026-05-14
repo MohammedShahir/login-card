@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mikrotik-portal-app
+    container_name: mikrotik-portal-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - mikrotik-network
+
+  webserver:
+    image: nginx:alpine
+    container_name: mikrotik-portal-webserver
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - mikrotik-network
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.0
+    container_name: mikrotik-portal-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-mikrotik_portal}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-secret}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
+      MYSQL_USER: ${DB_USERNAME:-mikrotik_user}
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - mikrotik-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: mikrotik-portal-phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-secret}
+    ports:
+      - "8080:80"
+    networks:
+      - mikrotik-network
+    depends_on:
+      - db
+
+networks:
+  mikrotik-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
